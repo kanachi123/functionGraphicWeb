@@ -28,6 +28,13 @@ def set_data():
         return jsonify({'error': error}), 400
 
     cpp_data = {"formula":formula,'lower':segment_values[0],'upper':segment_values[1]}
+    try:
+        with open(JSON_FILE, 'w', encoding='utf-8') as f:
+            json.dump(cpp_data, f, indent=4)
+    except IOError:
+        return jsonify({'error': 'Ошибка записи в файл'}), 500
+
+    
     return jsonify(cpp_data),200
 
 def valid_formula(formula):
