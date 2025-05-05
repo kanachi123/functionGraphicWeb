@@ -10,14 +10,25 @@ JSON_FILE = 'data.json'
 @server.route('/',methods=['POST'])
 
 
-def get_data():
+def set_data():
     
     data = request.get_json()
     
     if(not data or 'formula' not in data or 'segment' not in data):
         return jsonify({'error':'Invalid Input'}),400
+    formula = data['formula']
+    segment = data['segment']
+    if(not valid_formula(formula)):
+        return jsonify({'error':'Invalid Formula'}),400
+    if(not valid_segment(segment)):
+        return jsonify({'error':'Invalid Segment'}),400
+   
+    segment_values, error = valid_segment(segment)
+    if error:
+        return jsonify({'error': error}), 400
 
-
+    cpp_data = {"formula":formula,'lower':segment_values[0],'upper':segment_values[1]}
+    return jsonify(cpp_data),200
 
 def valid_formula(formula):
     try:
@@ -39,4 +50,7 @@ def valid_segment(segment):
     if lower >= upper:
         return (None, "error: Invalid segment values. Start value must be less than end value.")
     return (lower, upper),None
+
+if __name__ == '__main__':
+    server.run(debug=True)
 
