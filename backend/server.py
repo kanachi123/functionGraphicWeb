@@ -2,16 +2,46 @@ from flask import Flask,request,jsonify
 import json
 import sympy as sp
 import re
+import os
+from flask_cors import CORS
 
 server = Flask(__name__)
+CORS(server,resources={r"/*": {"origins": "*"}})
 
 JSON_FILE = 'data.json'
 
-@server.route('/',methods=['POST'])
+@server.route('/calculate',methods=['POST','OPTIONS'])
 
+import time
+
+@server.route('/check', methods=['GET'])
+
+
+def check_data():
+    last_modified = None
+
+    while True:
+        try:
+            modified_time = os.path.getmtime(JSON_FILE)
+
+            if modified_time != last_modified:
+                last_modified = modified_time
+
+                with open(JSON_FILE, 'r', encoding='utf-8') as f:
+                    updated_data = json.load(f)
+
+                return jsonify(updated_data), 200
+
+        except FileNotFoundError:
+            return jsonify({'error': 'file not found'}), 404
+        
+        time.sleep(1)
 
 def set_data():
     
+    if request.method == "OPTIONS":
+        return jsonify({'message': 'CORS preflight'}), 200
+
     data = request.get_json()
     
     if(not data or 'formula' not in data or 'segment' not in data):
