@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             });
 
             if (!response.ok) {
-                throw new Error('Network response was not ok: ${response.status}');
+                throw new Error(`Network response was not ok: ${response.status}`);
             }
 
             const result = await response.json();
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                 if(result[key]){
                     drawGraph(ctx, result[key]);}
                 else{
-                    console.error('error: no data for ${key} received from server!');
+                    console.error(`error: no data for ${key} received from server!`);
                     return;
                 }
             });
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             }
 
         } catch (error) {
-            console.error('error:', error);
+            console.error(`error:`, error);
         }
     });
 
