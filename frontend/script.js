@@ -27,8 +27,15 @@ document.addEventListener('DOMContentLoaded',()=>{
                 headers: {
                     'Content-Type': 'application/json'
                 },
+
                 body: JSON.stringify(dataToSend)
+                
             });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok: ${response.status}');
+            }
+
             const result = await response.json();
             console.log('result:', result);
             
@@ -42,10 +49,18 @@ document.addEventListener('DOMContentLoaded',()=>{
                 canvas.height = 400;
                 graphsContainer.appendChild(canvas);
                 const ctx = canvas.getContext('2d');
-                drawGraph(ctx, result[key]);
+
+                if(result[key]){
+                    drawGraph(ctx, result[key]);}
+                else{
+                    console.error('error: no data for ${key} received from server!');
+                    return;
+                }
             });
             canvasCounter++;
             if (canvasCounter === 3) {
+                
+                const main = document.querySelector('main');
                 main.style.borderBottomRightRadius = '0px';
                 main.style.borderBottomLeftRadius = '0px';
             }
