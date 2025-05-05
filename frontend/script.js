@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             segment:segment
         };
         try {
+            console.log('Отправляем JSON:', JSON.stringify(dataToSend));
             const response = await fetch('http://localhost:5000/calculate', {
                 method: 'POST',
                 headers: {
