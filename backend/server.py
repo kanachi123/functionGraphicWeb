@@ -4,6 +4,7 @@ import sympy as sp
 import re
 import os
 from flask_cors import CORS
+import time
 
 server = Flask(__name__)
 CORS(server,resources={r"/*": {"origins": "*"}})
@@ -12,7 +13,6 @@ JSON_FILE = 'data.json'
 
 @server.route('/calculate',methods=['POST','OPTIONS'])
 
-import time
 
 @server.route('/check', methods=['GET'])
 
