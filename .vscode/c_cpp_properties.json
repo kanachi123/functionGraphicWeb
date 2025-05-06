@@ -4,7 +4,9 @@
             "name": "Win32",
             "includePath": [
                 "${default}",
-                "${workspaceFolder}/backend/cpp_files/nlohmann-json-v3.11.3/json-3.11.3/single_include"
+                "${workspaceFolder}/backend/cpp_files/nlohmann-json-v3.11.3/json-3.11.3/single_include",
+                "${workspaceFolder}/backend/cpp_files/muparser/include"
+                
             ],
             "defines": [
                 "_DEBUG",

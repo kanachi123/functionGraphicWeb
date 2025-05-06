@@ -63,7 +63,7 @@ def set_data():
         with open(JSON_FILE, 'w', encoding='utf-8') as f:
             json.dump(cpp_data, f, indent=4)
     except IOError:
-        return jsonify({'error': 'Ошибка записи в файл'}), 500
+        return jsonify({'error': 'writing error'}), 500
 
     
     return jsonify(cpp_data),200

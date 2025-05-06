@@ -9,6 +9,10 @@ include_directories("D:/Program Files/Microsoft Visual Studio/2022/Community/VC/
 set(NLOHMANN_JSON_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/backend/cpp_files/nlohmann-json-v3.11.3/single_include")
 include_directories(${NLOHMANN_JSON_INCLUDE_DIR})
 
+
+set(MUPARSER_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/backend/cpp_files/muparser/include")
+include_directories(${MUPARSER_INCLUDE_DIR})
+
 set(SOURCES
     src/compute.cpp
 )

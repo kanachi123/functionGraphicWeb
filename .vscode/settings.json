@@ -1,7 +1,8 @@
 {
     "C_Cpp.default.includePath": [
         "D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.29.30133/include",
-        "C:/Users/Circl/Desktop/mixProject/backend/cpp_files/nlohmann-json-v3.11.3/single_include"
+        "C:/Users/Circl/Desktop/mixProject/backend/cpp_files/nlohmann-json-v3.11.3/single_include",
+        "C:/Users/Circl/Desktop/mixProject/backend/cpp_files/muparser/include"
     ],
     "C_Cpp.default.compilerPath": "D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.29.30133/bin/HostX64/x64/cl.exe",
     "C_Cpp.default.intelliSenseMode": "msvc-x64"
