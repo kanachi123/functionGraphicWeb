@@ -5,5 +5,10 @@
         "C:/Users/Circl/Desktop/mixProject/backend/cpp_files/muparser/include"
     ],
     "C_Cpp.default.compilerPath": "D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.29.30133/bin/HostX64/x64/cl.exe",
-    "C_Cpp.default.intelliSenseMode": "msvc-x64"
+    "C_Cpp.default.intelliSenseMode": "msvc-x64",
+    "files.associations": {
+        "regex": "cpp",
+        "sstream": "cpp",
+        "vector": "cpp"
+    }
 }
