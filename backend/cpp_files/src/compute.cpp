@@ -21,13 +21,15 @@ struct Point {
 };
 
 void compute(const mu::string_type& exp,const json& data,const json& result){
+    
 
     mu::Parser parser;
     parser.SetExpr(exp);
 
     double x = data["lower"],end = data["upper"] + 1;
     double y {0},i = 0;
-
+    points.reserve(end - x);
+    points.resize(end - x);
 
     while (x < end){
         
@@ -57,7 +59,7 @@ void finite_diff_method(const mu::string_type& exp,double x,int i){
 }
 
 int main(){
-    
+
     std::ifstream inputFile("data.json");
     if(inputFile.is_open() == false){
         std::cerr << "Error opening file" << std::endl;
