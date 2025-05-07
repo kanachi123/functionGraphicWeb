@@ -20,7 +20,7 @@ struct Point {
     Point(double x, double y) : x(0), y(0),dy_dx(0.0),d2y_dx2(0.0) {}
 };
 
-void compute(const mu::string_type& exp,const json& data){
+void compute(const mu::string_type& exp,const json& data,const json& result){
 
     mu::Parser parser;
     parser.SetExpr(exp);
@@ -35,7 +35,9 @@ void compute(const mu::string_type& exp,const json& data){
         points[i].x = x;
         points[i].y = parser.Eval();
         x++;i++;
+        finite_diff_method(exp,x,i);
     }
+
 }
 
 void finite_diff_method(const mu::string_type& exp,double x,int i){
@@ -54,16 +56,8 @@ void finite_diff_method(const mu::string_type& exp,double x,int i){
 
 }
 
-void compute(){
-
-
-}
-
-
-
 int main(){
-
-
+    
     std::ifstream inputFile("data.json");
     if(inputFile.is_open() == false){
         std::cerr << "Error opening file" << std::endl;
@@ -74,7 +68,21 @@ int main(){
     inputFile.close();
     std::cout << "Data loaded successfully" << std::endl;
 
-
-
+    compute(data["expression"],data,data["result"]);
+    std::cout << "Computation completed successfully" << std::endl;
+    std::ofstream file("result.json");
     
+    file << "{ \"points\": [";
+
+    bool first = true;
+    for     (const auto& p : points) {
+        if (!first) file << ",";
+        file << "{ \"x\": " << p.x << ", \"y\": " << p.y 
+             << ", \"dy_dx\": " << p.dy_dx << ", \"d2y_dx2\": " << p.d2y_dx2 << " }";
+        first = false;
+    }
+
+    file << "] }";
+    file.close();
+    std::cout << "Result saved successfully" << std::endl;
 }
