@@ -1,3 +1,5 @@
+//none OOP just a simple C++ program to compute the derivative of a function using finite difference method
+
 #include <iostream>
 #include <nlohmann/json.hpp>
 #include <thread>
