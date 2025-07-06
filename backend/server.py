@@ -1,4 +1,3 @@
-#just vibe coding or post-irony(this->irony = meta-irony)
 from flask import Flask,request,jsonify
 import json
 import sympy as sp
